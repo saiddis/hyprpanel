@@ -333,7 +333,7 @@ func (i *taskbarItem) launchIndicator() {
 	spinner.Start()
 	i.indicator.Append(&spinner.Widget)
 	go func() {
-		<-time.After(7 * time.Second)
+		<-time.After(3 * time.Second)
 
 		var cb glib.SourceFunc
 		cb = func(uintptr) bool {
@@ -347,12 +347,12 @@ func (i *taskbarItem) launchIndicator() {
 }
 
 func (i *taskbarItem) updateIndicator() {
-	if i.cfg.HideIndicators {
-		return
-	}
 	for c := i.indicator.GetLastChild(); c != nil; c = i.indicator.GetFirstChild() {
 		i.indicator.Remove(c)
 		c.Unref()
+	}
+	if i.cfg.HideIndicators {
+		return
 	}
 
 	for n := range i.sortedClients {
