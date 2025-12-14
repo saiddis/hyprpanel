@@ -43,6 +43,7 @@
   
     - [Direction](#hyprpanel-event-v1-Direction)
     - [EventKind](#hyprpanel-event-v1-EventKind)
+    - [InhibitTarget](#hyprpanel-event-v1-InhibitTarget)
     - [PowerState](#hyprpanel-event-v1-PowerState)
     - [PowerType](#hyprpanel-event-v1-PowerType)
   
@@ -777,6 +778,20 @@
 | EVENT_KIND_HYPR_DESTROYWORKSPACEV2 | 57 |  |
 | EVENT_KIND_HYPR_WORKSPACEV2 | 58 |  |
 | EVENT_KIND_EXEC | 59 |  |
+
+
+
+<a name="hyprpanel-event-v1-InhibitTarget"></a>
+
+### InhibitTarget
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INHIBIT_TARGET_UNSPECIFIED | 0 |  |
+| INHIBIT_TARGET_IDLE | 1 |  |
+| INHIBIT_TARGET_SUSPEND | 2 |  |
+| INHIBIT_TARGET_LOGOUT | 3 |  |
 
 
 

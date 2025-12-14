@@ -116,6 +116,11 @@ message SystrayModule {
   }
 }
 
+message IdleInhibitor {
+  uint32 icon_size = 1; // size in pixels for panel icon.
+  bool icon_symbolic = 2; // display symbolic or coloured icon in panel.
+}
+
 message Module {
   oneof kind {
     Pager pager = 1;
@@ -128,5 +133,6 @@ message Module {
     Clock clock = 8;
     Session session = 9;
     Spacer spacer = 10;
+    IdleInhibitor idle_inhibitor = 11;
   }
 }

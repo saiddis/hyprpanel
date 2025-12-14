@@ -7,6 +7,7 @@
     - [Audio](#hyprpanel-module-v1-Audio)
     - [Clock](#hyprpanel-module-v1-Clock)
     - [Hud](#hyprpanel-module-v1-Hud)
+    - [IdleInhibitor](#hyprpanel-module-v1-IdleInhibitor)
     - [Module](#hyprpanel-module-v1-Module)
     - [Notifications](#hyprpanel-module-v1-Notifications)
     - [Pager](#hyprpanel-module-v1-Pager)
@@ -86,6 +87,22 @@
 
 
 
+<a name="hyprpanel-module-v1-IdleInhibitor"></a>
+
+### IdleInhibitor
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| icon_size | [uint32](#uint32) |  | size in pixels for panel icon. |
+| icon_symbolic | [bool](#bool) |  | display symbolic or coloured icon in panel. |
+
+
+
+
+
+
 <a name="hyprpanel-module-v1-Module"></a>
 
 ### Module
@@ -104,6 +121,7 @@
 | clock | [Clock](#hyprpanel-module-v1-Clock) |  |  |
 | session | [Session](#hyprpanel-module-v1-Session) |  |  |
 | spacer | [Spacer](#hyprpanel-module-v1-Spacer) |  |  |
+| idle_inhibitor | [IdleInhibitor](#hyprpanel-module-v1-IdleInhibitor) |  |  |
 
 
 

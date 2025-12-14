@@ -8,6 +8,7 @@
     - [Config.Audio](#hyprpanel-config-v1-Config-Audio)
     - [Config.DBUS](#hyprpanel-config-v1-Config-DBUS)
     - [Config.DBUS.Brightness](#hyprpanel-config-v1-Config-DBUS-Brightness)
+    - [Config.DBUS.IdleInhibitor](#hyprpanel-config-v1-Config-DBUS-IdleInhibitor)
     - [Config.DBUS.Notifications](#hyprpanel-config-v1-Config-DBUS-Notifications)
     - [Config.DBUS.Power](#hyprpanel-config-v1-Config-DBUS-Power)
     - [Config.DBUS.Shortcuts](#hyprpanel-config-v1-Config-DBUS-Shortcuts)
@@ -84,6 +85,7 @@
 | shortcuts | [Config.DBUS.Shortcuts](#hyprpanel-config-v1-Config-DBUS-Shortcuts) |  | shortcuts configuration. |
 | brightness | [Config.DBUS.Brightness](#hyprpanel-config-v1-Config-DBUS-Brightness) |  | brightness configuration. |
 | power | [Config.DBUS.Power](#hyprpanel-config-v1-Config-DBUS-Power) |  | power configuration. |
+| idle_inhibitor | [Config.DBUS.IdleInhibitor](#hyprpanel-config-v1-Config-DBUS-IdleInhibitor) |  | idle inhibitor configuration. |
 
 
 
@@ -103,6 +105,21 @@
 | min_brightness | [uint32](#uint32) |  | minimum brightness value. |
 | enable_logind | [bool](#bool) |  | set brightness via systemd-logind DBUS interface instead of direct sysfs. Requires logind session, and DBUS.enabled = true. |
 | hud_notifications | [bool](#bool) |  | display HUD notifications on change (requires at least one HUD module). |
+
+
+
+
+
+
+<a name="hyprpanel-config-v1-Config-DBUS-IdleInhibitor"></a>
+
+### Config.DBUS.IdleInhibitor
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  | toggles the idle inhibitor functionality, required for &#34;idle_inhibitor&#34; module. |
 
 
 

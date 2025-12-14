@@ -176,6 +176,14 @@ func (h *host) BrightnessAdjust(devName string, direction eventv1.Direction) err
 	return h.dbus.Brightness().Adjust(devName, direction)
 }
 
+func (h *host) IdleInhibitorToggle(target eventv1.InhibitTarget) error {
+	if i := h.dbus.IdleInhibitor(); i.IsActive() {
+		return i.Uninhibit()
+	} else {
+		return i.Inhibit(target)
+	}
+}
+
 func (h *host) CaptureFrame(address uint64, width, height int32) (*hyprpanelv1.ImageNRGBA, error) {
 	if h.wl == nil {
 		return nil, fmt.Errorf(`wl app not available`)

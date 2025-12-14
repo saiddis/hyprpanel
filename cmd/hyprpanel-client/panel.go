@@ -218,6 +218,10 @@ func (p *panel) build() error {
 	for _, modCfg := range p.panelCfg.Modules {
 		modCfg := modCfg
 		switch modCfg.Kind.(type) {
+		case *modulev1.Module_IdleInhibitor:
+			cfg := modCfg.GetIdleInhibitor()
+			mod := newIdleInhibitor(cfg, p.api)
+			p.modules = append(p.modules, mod)
 		case *modulev1.Module_Pager:
 			cfg := modCfg.GetPager()
 			mod := newPager(cfg, p.api)

@@ -27,6 +27,9 @@
 			"low_command": "",
 			"critical_command": "",
 			"hud_notifications": true
+		},
+		"idle_inhibitor": {
+			"enabled": true
 		}
 	},
 	"audio": {
@@ -129,6 +132,19 @@
 						"timeout": "2s",
 						"position": "POSITION_BOTTOM",
 						"margin": 256
+					}
+				},
+				{
+					"spacer": {
+						"size": 16,
+						"expand": false
+					}
+				},
+				{
+					"idle_inhibitor": {
+						"icon_size": 24,
+						"icon_symbolic": true
+
 					}
 				},
 				{

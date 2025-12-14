@@ -43,6 +43,13 @@ type Brightness interface {
 	Adjust(devName string, direction eventv1.Direction) error
 }
 
+// IdleInhibitor DBUS API, may return nil if IdleInhibitor is disabled.
+type IdleInhibitor interface {
+	IsActive() bool
+	Inhibit(target eventv1.InhibitTarget) error
+	Uninhibit() error
+}
+
 // Client for DBUS.
 type Client struct {
 	cfg             *configv1.Config_DBUS
@@ -56,6 +63,7 @@ type Client struct {
 	notifications   *notifications
 	brightness      *brightness
 	power           *power
+	idleInhibitor   *idleInhibitor
 }
 
 // Systray API.
@@ -71,6 +79,11 @@ func (c *Client) Notification() Notification {
 // Brightness API.
 func (c *Client) Brightness() Brightness {
 	return c.brightness
+}
+
+// IdleInhibitor API.
+func (c *Client) IdleInhibitor() IdleInhibitor {
+	return c.idleInhibitor
 }
 
 // Events channel will deliver events from DBUS.
@@ -151,6 +164,12 @@ func New(cfg *configv1.Config_DBUS, logger hclog.Logger) (*Client, <-chan *event
 
 	if cfg.Power.Enabled {
 		if c.power, err = newPower(systemConn, logger, c.eventCh, cfg.Power); err != nil {
+			return nil, nil, err
+		}
+	}
+
+	if cfg.IdleInhibitor.Enabled {
+		if c.idleInhibitor, err = newIdleInhibitor(systemConn, logger, c.eventCh, cfg.IdleInhibitor); err != nil {
 			return nil, nil, err
 		}
 	}

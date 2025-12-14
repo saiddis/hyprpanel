@@ -67,6 +67,10 @@ message Config {
       bool hud_notifications = 6; // display HUD notifications on power state change or low power.
     }
 
+    message IdleInhibitor {
+      bool enabled = 1; // toggles the idle inhibitor functionality, required for "idle_inhibitor" module.
+    }
+
     bool enabled = 1; // if false, no DBUS functionality is available.
     google.protobuf.Duration connect_timeout = 2; // specifies the maximum time we will attempt to connect to the bus before failing (format: "20s").
     google.protobuf.Duration connect_interval = 3; // specifies the interval that we will attempt to connect to the session bus on startup (format: "0.200s").
@@ -76,6 +80,7 @@ message Config {
     Shortcuts shortcuts = 6; // shortcuts configuration.
     Brightness brightness = 7; // brightness configuration.
     Power power = 8; // power configuration.
+    IdleInhibitor idle_inhibitor = 9; // idle inhibitor configuration.
   }
 
   message Audio {

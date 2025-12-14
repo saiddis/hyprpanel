@@ -108,6 +108,15 @@ type HostGRPCClient struct {
 	client hyprpanelv1.HostServiceClient
 }
 
+func (c *HostGRPCClient) IdleInhibitorToggle(target eventv1.InhibitTarget) error {
+	if _, err := c.client.IdleInhibitorToggle(context.Background(), &hyprpanelv1.HostServiceIdleInhibitorToggleRequest{
+		Target: target,
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
 // Exec implmenetation.
 func (c *HostGRPCClient) Exec(action *hyprpanelv1.AppInfo_Action) error {
 	_, err := c.client.Exec(context.Background(), &hyprpanelv1.HostServiceExecRequest{
@@ -267,6 +276,14 @@ func (c *HostGRPCClient) CaptureFrame(address uint64, width, height int32) (*hyp
 type HostGRPCServer struct {
 	hyprpanelv1.UnimplementedHostServiceServer
 	Impl Host
+}
+
+func (s *HostGRPCServer) IdleInhibitorToggle(ctx context.Context, req *hyprpanelv1.HostServiceIdleInhibitorToggleRequest) (*hyprpanelv1.HostServiceIdleInhibitorToggleResponse, error) {
+	err := s.Impl.IdleInhibitorToggle(req.Target)
+	if err != nil {
+		return &hyprpanelv1.HostServiceIdleInhibitorToggleResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceIdleInhibitorToggleResponse{}, nil
 }
 
 // Exec implementation.

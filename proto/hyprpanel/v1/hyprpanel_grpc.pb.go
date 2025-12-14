@@ -199,6 +199,7 @@ const (
 	HostService_AudioSourceMuteToggle_FullMethodName      = "/hyprpanel.v1.HostService/AudioSourceMuteToggle"
 	HostService_BrightnessAdjust_FullMethodName           = "/hyprpanel.v1.HostService/BrightnessAdjust"
 	HostService_CaptureFrame_FullMethodName               = "/hyprpanel.v1.HostService/CaptureFrame"
+	HostService_IdleInhibitorToggle_FullMethodName        = "/hyprpanel.v1.HostService/IdleInhibitorToggle"
 )
 
 // HostServiceClient is the client API for HostService service.
@@ -221,6 +222,7 @@ type HostServiceClient interface {
 	AudioSourceMuteToggle(ctx context.Context, in *HostServiceAudioSourceMuteToggleRequest, opts ...grpc.CallOption) (*HostServiceAudioSourceMuteToggleResponse, error)
 	BrightnessAdjust(ctx context.Context, in *HostServiceBrightnessAdjustRequest, opts ...grpc.CallOption) (*HostServiceBrightnessAdjustResponse, error)
 	CaptureFrame(ctx context.Context, in *HostServiceCaptureFrameRequest, opts ...grpc.CallOption) (*HostServiceCaptureFrameResponse, error)
+	IdleInhibitorToggle(ctx context.Context, in *HostServiceIdleInhibitorToggleRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorToggleResponse, error)
 }
 
 type hostServiceClient struct {
@@ -375,6 +377,15 @@ func (c *hostServiceClient) CaptureFrame(ctx context.Context, in *HostServiceCap
 	return out, nil
 }
 
+func (c *hostServiceClient) IdleInhibitorToggle(ctx context.Context, in *HostServiceIdleInhibitorToggleRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorToggleResponse, error) {
+	out := new(HostServiceIdleInhibitorToggleResponse)
+	err := c.cc.Invoke(ctx, HostService_IdleInhibitorToggle_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HostServiceServer is the server API for HostService service.
 // All implementations must embed UnimplementedHostServiceServer
 // for forward compatibility
@@ -395,6 +406,7 @@ type HostServiceServer interface {
 	AudioSourceMuteToggle(context.Context, *HostServiceAudioSourceMuteToggleRequest) (*HostServiceAudioSourceMuteToggleResponse, error)
 	BrightnessAdjust(context.Context, *HostServiceBrightnessAdjustRequest) (*HostServiceBrightnessAdjustResponse, error)
 	CaptureFrame(context.Context, *HostServiceCaptureFrameRequest) (*HostServiceCaptureFrameResponse, error)
+	IdleInhibitorToggle(context.Context, *HostServiceIdleInhibitorToggleRequest) (*HostServiceIdleInhibitorToggleResponse, error)
 	mustEmbedUnimplementedHostServiceServer()
 }
 
@@ -449,6 +461,9 @@ func (UnimplementedHostServiceServer) BrightnessAdjust(context.Context, *HostSer
 }
 func (UnimplementedHostServiceServer) CaptureFrame(context.Context, *HostServiceCaptureFrameRequest) (*HostServiceCaptureFrameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CaptureFrame not implemented")
+}
+func (UnimplementedHostServiceServer) IdleInhibitorToggle(context.Context, *HostServiceIdleInhibitorToggleRequest) (*HostServiceIdleInhibitorToggleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IdleInhibitorToggle not implemented")
 }
 func (UnimplementedHostServiceServer) mustEmbedUnimplementedHostServiceServer() {}
 
@@ -751,6 +766,24 @@ func _HostService_CaptureFrame_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HostService_IdleInhibitorToggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceIdleInhibitorToggleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).IdleInhibitorToggle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_IdleInhibitorToggle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).IdleInhibitorToggle(ctx, req.(*HostServiceIdleInhibitorToggleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HostService_ServiceDesc is the grpc.ServiceDesc for HostService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -821,6 +854,10 @@ var HostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CaptureFrame",
 			Handler:    _HostService_CaptureFrame_Handler,
+		},
+		{
+			MethodName: "IdleInhibitorToggle",
+			Handler:    _HostService_IdleInhibitorToggle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -181,6 +181,12 @@ message HostServiceCaptureFrameRequest {
   int32 height = 3;
 }
 
+message HostServiceIdleInhibitorToggleRequest {
+  hyprpanel.event.v1.InhibitTarget target = 1;
+}
+
+message HostServiceIdleInhibitorToggleResponse {}
+
 message HostServiceCaptureFrameResponse {
   ImageNRGBA image = 1;
 }
@@ -202,4 +208,5 @@ service HostService {
   rpc AudioSourceMuteToggle(HostServiceAudioSourceMuteToggleRequest) returns (HostServiceAudioSourceMuteToggleResponse);
   rpc BrightnessAdjust(HostServiceBrightnessAdjustRequest) returns (HostServiceBrightnessAdjustResponse);
   rpc CaptureFrame(HostServiceCaptureFrameRequest) returns (HostServiceCaptureFrameResponse);
+  rpc IdleInhibitorToggle(HostServiceIdleInhibitorToggleRequest) returns (HostServiceIdleInhibitorToggleResponse);
 }

@@ -22,6 +22,8 @@
     - [HostServiceExecResponse](#hyprpanel-v1-HostServiceExecResponse)
     - [HostServiceFindApplicationRequest](#hyprpanel-v1-HostServiceFindApplicationRequest)
     - [HostServiceFindApplicationResponse](#hyprpanel-v1-HostServiceFindApplicationResponse)
+    - [HostServiceIdleInhibitorToggleRequest](#hyprpanel-v1-HostServiceIdleInhibitorToggleRequest)
+    - [HostServiceIdleInhibitorToggleResponse](#hyprpanel-v1-HostServiceIdleInhibitorToggleResponse)
     - [HostServiceNotificationActionRequest](#hyprpanel-v1-HostServiceNotificationActionRequest)
     - [HostServiceNotificationActionResponse](#hyprpanel-v1-HostServiceNotificationActionResponse)
     - [HostServiceNotificationClosedRequest](#hyprpanel-v1-HostServiceNotificationClosedRequest)
@@ -317,6 +319,31 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | app_info | [AppInfo](#hyprpanel-v1-AppInfo) |  |  |
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceIdleInhibitorToggleRequest"></a>
+
+### HostServiceIdleInhibitorToggleRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| target | [hyprpanel.event.v1.InhibitTarget](#hyprpanel-event-v1-InhibitTarget) |  |  |
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceIdleInhibitorToggleResponse"></a>
+
+### HostServiceIdleInhibitorToggleResponse
+
 
 
 
@@ -724,6 +751,7 @@
 | AudioSourceMuteToggle | [HostServiceAudioSourceMuteToggleRequest](#hyprpanel-v1-HostServiceAudioSourceMuteToggleRequest) | [HostServiceAudioSourceMuteToggleResponse](#hyprpanel-v1-HostServiceAudioSourceMuteToggleResponse) |  |
 | BrightnessAdjust | [HostServiceBrightnessAdjustRequest](#hyprpanel-v1-HostServiceBrightnessAdjustRequest) | [HostServiceBrightnessAdjustResponse](#hyprpanel-v1-HostServiceBrightnessAdjustResponse) |  |
 | CaptureFrame | [HostServiceCaptureFrameRequest](#hyprpanel-v1-HostServiceCaptureFrameRequest) | [HostServiceCaptureFrameResponse](#hyprpanel-v1-HostServiceCaptureFrameResponse) |  |
+| IdleInhibitorToggle | [HostServiceIdleInhibitorToggleRequest](#hyprpanel-v1-HostServiceIdleInhibitorToggleRequest) | [HostServiceIdleInhibitorToggleResponse](#hyprpanel-v1-HostServiceIdleInhibitorToggleResponse) |  |
 
 
 <a name="hyprpanel-v1-PanelService"></a>

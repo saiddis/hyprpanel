@@ -18,9 +18,14 @@ const (
 	fdoPropertiesMemberPropertiesChanged = `PropertiesChanged`
 	fdoPropertiesSignalPropertiesChanged = fdoPropertiesName + `.` + fdoPropertiesMemberPropertiesChanged
 
-	fdoLogindName                       = `org.freedesktop.login1`
+	fdoLogindName = `org.freedesktop.login1`
+	fdoLogindPath = `/org/freedesktop/login1`
+
+	fdoLogindManagerName          = fdoLogindName + `.Manager`
+	fdoLogindManagerMethodInhibit = fdoLogindManagerName + `.Inhibit`
+
 	fdoLogindSessionName                = fdoLogindName + `.Session`
-	fdoLogindSessionPath                = `/org/freedesktop/login1/session/auto`
+	fdoLogindSessionPath                = fdoLogindPath + `/session/auto`
 	fdoLogindSessionMethodSetBrightness = fdoLogindSessionName + `.SetBrightness`
 
 	fdoSystemdName       = `org.freedesktop.systemd1`

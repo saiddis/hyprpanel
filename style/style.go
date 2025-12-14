@@ -41,6 +41,8 @@ const (
 	HudID = `hud`
 	// HudOverlayID element identifier.
 	HudOverlayID = `hudOverlay`
+	// IdleID element identifier.
+	IdleInhibitorID = `idle_inhibitor`
 
 	// ModuleClass class name.
 	ModuleClass = `module`
