@@ -37,8 +37,8 @@ enum PowerState {
 enum InhibitTarget {
   INHIBIT_TARGET_UNSPECIFIED = 0;
   INHIBIT_TARGET_IDLE = 1;
-  INHIBIT_TARGET_SUSPEND = 2;
-  INHIBIT_TARGET_LOGOUT = 3;
+  INHIBIT_TARGET_SLEEP = 2;
+  INHIBIT_TARGET_SHUTDOWN = 3;
 }
 
 enum EventKind {
@@ -101,6 +101,8 @@ enum EventKind {
   EVENT_KIND_HYPR_DESTROYWORKSPACEV2 = 57;
   EVENT_KIND_HYPR_WORKSPACEV2 = 58;
   EVENT_KIND_EXEC = 59;
+  EVENT_KIND_IDLE_INHIBITOR_INHIBIT = 60;
+  EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT = 61;
 }
 
 message HyprWorkspaceV2Value {
@@ -338,6 +340,10 @@ message PowerChangeValue {
   double energy = 12;
   double energy_empty = 13;
   double energy_full = 14;
+}
+
+message IdleInhibitorValue {
+  InhibitTarget target = 1;
 }
 
 message Event {

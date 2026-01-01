@@ -24,6 +24,7 @@
     - [HyprOpenWindowValue](#hyprpanel-event-v1-HyprOpenWindowValue)
     - [HyprRenameWorkspaceValue](#hyprpanel-event-v1-HyprRenameWorkspaceValue)
     - [HyprWorkspaceV2Value](#hyprpanel-event-v1-HyprWorkspaceV2Value)
+    - [IdleInhibitorValue](#hyprpanel-event-v1-IdleInhibitorValue)
     - [NotificationValue](#hyprpanel-event-v1-NotificationValue)
     - [NotificationValue.Action](#hyprpanel-event-v1-NotificationValue-Action)
     - [NotificationValue.Hint](#hyprpanel-event-v1-NotificationValue-Hint)
@@ -391,6 +392,21 @@
 | ----- | ---- | ----- | ----------- |
 | id | [int32](#int32) |  |  |
 | name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="hyprpanel-event-v1-IdleInhibitorValue"></a>
+
+### IdleInhibitorValue
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| target | [InhibitTarget](#hyprpanel-event-v1-InhibitTarget) |  |  |
 
 
 
@@ -778,6 +794,8 @@
 | EVENT_KIND_HYPR_DESTROYWORKSPACEV2 | 57 |  |
 | EVENT_KIND_HYPR_WORKSPACEV2 | 58 |  |
 | EVENT_KIND_EXEC | 59 |  |
+| EVENT_KIND_IDLE_INHIBITOR_INHIBIT | 60 |  |
+| EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT | 61 |  |
 
 
 
@@ -790,8 +808,8 @@
 | ---- | ------ | ----------- |
 | INHIBIT_TARGET_UNSPECIFIED | 0 |  |
 | INHIBIT_TARGET_IDLE | 1 |  |
-| INHIBIT_TARGET_SUSPEND | 2 |  |
-| INHIBIT_TARGET_LOGOUT | 3 |  |
+| INHIBIT_TARGET_SLEEP | 2 |  |
+| INHIBIT_TARGET_SHUTDOWN | 3 |  |
 
 
 

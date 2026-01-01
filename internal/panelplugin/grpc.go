@@ -108,8 +108,17 @@ type HostGRPCClient struct {
 	client hyprpanelv1.HostServiceClient
 }
 
-func (c *HostGRPCClient) IdleInhibitorToggle(target eventv1.InhibitTarget) error {
-	if _, err := c.client.IdleInhibitorToggle(context.Background(), &hyprpanelv1.HostServiceIdleInhibitorToggleRequest{
+func (c *HostGRPCClient) IdleInhibitorInhibit(target eventv1.InhibitTarget) error {
+	if _, err := c.client.IdleInhibitorInhibit(context.Background(), &hyprpanelv1.HostServiceIdleInhibitorRequest{
+		Target: target,
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) IdleInhibitorUninhibit(target eventv1.InhibitTarget) error {
+	if _, err := c.client.IdleInhibitorUninhibit(context.Background(), &hyprpanelv1.HostServiceIdleInhibitorRequest{
 		Target: target,
 	}); err != nil {
 		return err
@@ -278,12 +287,20 @@ type HostGRPCServer struct {
 	Impl Host
 }
 
-func (s *HostGRPCServer) IdleInhibitorToggle(ctx context.Context, req *hyprpanelv1.HostServiceIdleInhibitorToggleRequest) (*hyprpanelv1.HostServiceIdleInhibitorToggleResponse, error) {
-	err := s.Impl.IdleInhibitorToggle(req.Target)
+func (s *HostGRPCServer) IdleInhibitorInhibit(ctx context.Context, req *hyprpanelv1.HostServiceIdleInhibitorRequest) (*hyprpanelv1.HostServiceIdleInhibitorResponse, error) {
+	err := s.Impl.IdleInhibitorInhibit(req.Target)
 	if err != nil {
-		return &hyprpanelv1.HostServiceIdleInhibitorToggleResponse{}, err
+		return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, err
 	}
-	return &hyprpanelv1.HostServiceIdleInhibitorToggleResponse{}, nil
+	return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, nil
+}
+
+func (s *HostGRPCServer) IdleInhibitorUninhibit(ctx context.Context, req *hyprpanelv1.HostServiceIdleInhibitorRequest) (*hyprpanelv1.HostServiceIdleInhibitorResponse, error) {
+	err := s.Impl.IdleInhibitorUninhibit(req.Target)
+	if err != nil {
+		return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, nil
 }
 
 // Exec implementation.

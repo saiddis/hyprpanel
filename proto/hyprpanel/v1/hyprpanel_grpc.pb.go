@@ -199,7 +199,8 @@ const (
 	HostService_AudioSourceMuteToggle_FullMethodName      = "/hyprpanel.v1.HostService/AudioSourceMuteToggle"
 	HostService_BrightnessAdjust_FullMethodName           = "/hyprpanel.v1.HostService/BrightnessAdjust"
 	HostService_CaptureFrame_FullMethodName               = "/hyprpanel.v1.HostService/CaptureFrame"
-	HostService_IdleInhibitorToggle_FullMethodName        = "/hyprpanel.v1.HostService/IdleInhibitorToggle"
+	HostService_IdleInhibitorInhibit_FullMethodName       = "/hyprpanel.v1.HostService/IdleInhibitorInhibit"
+	HostService_IdleInhibitorUninhibit_FullMethodName     = "/hyprpanel.v1.HostService/IdleInhibitorUninhibit"
 )
 
 // HostServiceClient is the client API for HostService service.
@@ -222,7 +223,8 @@ type HostServiceClient interface {
 	AudioSourceMuteToggle(ctx context.Context, in *HostServiceAudioSourceMuteToggleRequest, opts ...grpc.CallOption) (*HostServiceAudioSourceMuteToggleResponse, error)
 	BrightnessAdjust(ctx context.Context, in *HostServiceBrightnessAdjustRequest, opts ...grpc.CallOption) (*HostServiceBrightnessAdjustResponse, error)
 	CaptureFrame(ctx context.Context, in *HostServiceCaptureFrameRequest, opts ...grpc.CallOption) (*HostServiceCaptureFrameResponse, error)
-	IdleInhibitorToggle(ctx context.Context, in *HostServiceIdleInhibitorToggleRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorToggleResponse, error)
+	IdleInhibitorInhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error)
+	IdleInhibitorUninhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error)
 }
 
 type hostServiceClient struct {
@@ -377,9 +379,18 @@ func (c *hostServiceClient) CaptureFrame(ctx context.Context, in *HostServiceCap
 	return out, nil
 }
 
-func (c *hostServiceClient) IdleInhibitorToggle(ctx context.Context, in *HostServiceIdleInhibitorToggleRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorToggleResponse, error) {
-	out := new(HostServiceIdleInhibitorToggleResponse)
-	err := c.cc.Invoke(ctx, HostService_IdleInhibitorToggle_FullMethodName, in, out, opts...)
+func (c *hostServiceClient) IdleInhibitorInhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error) {
+	out := new(HostServiceIdleInhibitorResponse)
+	err := c.cc.Invoke(ctx, HostService_IdleInhibitorInhibit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) IdleInhibitorUninhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error) {
+	out := new(HostServiceIdleInhibitorResponse)
+	err := c.cc.Invoke(ctx, HostService_IdleInhibitorUninhibit_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -406,7 +417,8 @@ type HostServiceServer interface {
 	AudioSourceMuteToggle(context.Context, *HostServiceAudioSourceMuteToggleRequest) (*HostServiceAudioSourceMuteToggleResponse, error)
 	BrightnessAdjust(context.Context, *HostServiceBrightnessAdjustRequest) (*HostServiceBrightnessAdjustResponse, error)
 	CaptureFrame(context.Context, *HostServiceCaptureFrameRequest) (*HostServiceCaptureFrameResponse, error)
-	IdleInhibitorToggle(context.Context, *HostServiceIdleInhibitorToggleRequest) (*HostServiceIdleInhibitorToggleResponse, error)
+	IdleInhibitorInhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error)
+	IdleInhibitorUninhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error)
 	mustEmbedUnimplementedHostServiceServer()
 }
 
@@ -462,8 +474,11 @@ func (UnimplementedHostServiceServer) BrightnessAdjust(context.Context, *HostSer
 func (UnimplementedHostServiceServer) CaptureFrame(context.Context, *HostServiceCaptureFrameRequest) (*HostServiceCaptureFrameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CaptureFrame not implemented")
 }
-func (UnimplementedHostServiceServer) IdleInhibitorToggle(context.Context, *HostServiceIdleInhibitorToggleRequest) (*HostServiceIdleInhibitorToggleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IdleInhibitorToggle not implemented")
+func (UnimplementedHostServiceServer) IdleInhibitorInhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IdleInhibitorInhibit not implemented")
+}
+func (UnimplementedHostServiceServer) IdleInhibitorUninhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IdleInhibitorUninhibit not implemented")
 }
 func (UnimplementedHostServiceServer) mustEmbedUnimplementedHostServiceServer() {}
 
@@ -766,20 +781,38 @@ func _HostService_CaptureFrame_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HostService_IdleInhibitorToggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HostServiceIdleInhibitorToggleRequest)
+func _HostService_IdleInhibitorInhibit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceIdleInhibitorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HostServiceServer).IdleInhibitorToggle(ctx, in)
+		return srv.(HostServiceServer).IdleInhibitorInhibit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HostService_IdleInhibitorToggle_FullMethodName,
+		FullMethod: HostService_IdleInhibitorInhibit_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HostServiceServer).IdleInhibitorToggle(ctx, req.(*HostServiceIdleInhibitorToggleRequest))
+		return srv.(HostServiceServer).IdleInhibitorInhibit(ctx, req.(*HostServiceIdleInhibitorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_IdleInhibitorUninhibit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceIdleInhibitorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).IdleInhibitorUninhibit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_IdleInhibitorUninhibit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).IdleInhibitorUninhibit(ctx, req.(*HostServiceIdleInhibitorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -856,8 +889,12 @@ var HostService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _HostService_CaptureFrame_Handler,
 		},
 		{
-			MethodName: "IdleInhibitorToggle",
-			Handler:    _HostService_IdleInhibitorToggle_Handler,
+			MethodName: "IdleInhibitorInhibit",
+			Handler:    _HostService_IdleInhibitorInhibit_Handler,
+		},
+		{
+			MethodName: "IdleInhibitorUninhibit",
+			Handler:    _HostService_IdleInhibitorUninhibit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

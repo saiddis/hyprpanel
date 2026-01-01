@@ -18,6 +18,7 @@
     - [SystrayModule](#hyprpanel-module-v1-SystrayModule)
     - [Taskbar](#hyprpanel-module-v1-Taskbar)
   
+    - [IdleInhibitor.DefaultTarget](#hyprpanel-module-v1-IdleInhibitor-DefaultTarget)
     - [Position](#hyprpanel-module-v1-Position)
     - [Systray.Status](#hyprpanel-module-v1-Systray-Status)
   
@@ -97,6 +98,7 @@
 | ----- | ---- | ----- | ----------- |
 | icon_size | [uint32](#uint32) |  | size in pixels for panel icon. |
 | icon_symbolic | [bool](#bool) |  | display symbolic or coloured icon in panel. |
+| default_target | [IdleInhibitor.DefaultTarget](#hyprpanel-module-v1-IdleInhibitor-DefaultTarget) |  | default inhibit target for left click action. |
 
 
 
@@ -284,6 +286,20 @@
 
 
  
+
+
+<a name="hyprpanel-module-v1-IdleInhibitor-DefaultTarget"></a>
+
+### IdleInhibitor.DefaultTarget
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DEFAULT_TARGET_UNSPECIFIED | 0 |  |
+| DEFAULT_TARGET_LOCK | 1 |  |
+| DEFAULT_TARGET_SUSPEND | 2 |  |
+| DEFAULT_TARGET_SHUTDOWN | 3 |  |
+
 
 
 <a name="hyprpanel-module-v1-Position"></a>

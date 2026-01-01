@@ -45,9 +45,8 @@ type Brightness interface {
 
 // IdleInhibitor DBUS API, may return nil if IdleInhibitor is disabled.
 type IdleInhibitor interface {
-	IsActive() bool
 	Inhibit(target eventv1.InhibitTarget) error
-	Uninhibit() error
+	Uninhibit(target eventv1.InhibitTarget) error
 }
 
 // Client for DBUS.
@@ -97,6 +96,11 @@ func (c *Client) Close() error {
 	if c.snw != nil {
 		if err := c.snw.close(); err != nil {
 			c.log.Warn(`Failed closing SNW session`, `err`, err)
+		}
+	}
+	if c.idleInhibitor != nil {
+		if err := c.idleInhibitor.close(); err != nil {
+			c.log.Warn(`Failed closing IdleInhibitor session`, `err`, err)
 		}
 	}
 	if c.notifications != nil {

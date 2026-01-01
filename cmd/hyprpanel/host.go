@@ -176,12 +176,21 @@ func (h *host) BrightnessAdjust(devName string, direction eventv1.Direction) err
 	return h.dbus.Brightness().Adjust(devName, direction)
 }
 
-func (h *host) IdleInhibitorToggle(target eventv1.InhibitTarget) error {
-	if i := h.dbus.IdleInhibitor(); i.IsActive() {
-		return i.Uninhibit()
-	} else {
-		return i.Inhibit(target)
+func (h *host) IdleInhibitorInhibit(target eventv1.InhibitTarget) error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.IdleInhibitor == nil || !h.cfg.Dbus.IdleInhibitor.Enabled {
+		return errDisabled
 	}
+
+	return h.dbus.IdleInhibitor().Inhibit(target)
+}
+
+func (h *host) IdleInhibitorUninhibit(target eventv1.InhibitTarget) error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.IdleInhibitor == nil || !h.cfg.Dbus.IdleInhibitor.Enabled {
+		return errDisabled
+	}
+
+	h.dbus.IdleInhibitor().Uninhibit(target)
+	return nil
 }
 
 func (h *host) CaptureFrame(address uint64, width, height int32) (*hyprpanelv1.ImageNRGBA, error) {

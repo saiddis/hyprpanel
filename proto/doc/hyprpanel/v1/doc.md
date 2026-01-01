@@ -22,8 +22,8 @@
     - [HostServiceExecResponse](#hyprpanel-v1-HostServiceExecResponse)
     - [HostServiceFindApplicationRequest](#hyprpanel-v1-HostServiceFindApplicationRequest)
     - [HostServiceFindApplicationResponse](#hyprpanel-v1-HostServiceFindApplicationResponse)
-    - [HostServiceIdleInhibitorToggleRequest](#hyprpanel-v1-HostServiceIdleInhibitorToggleRequest)
-    - [HostServiceIdleInhibitorToggleResponse](#hyprpanel-v1-HostServiceIdleInhibitorToggleResponse)
+    - [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest)
+    - [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse)
     - [HostServiceNotificationActionRequest](#hyprpanel-v1-HostServiceNotificationActionRequest)
     - [HostServiceNotificationActionResponse](#hyprpanel-v1-HostServiceNotificationActionResponse)
     - [HostServiceNotificationClosedRequest](#hyprpanel-v1-HostServiceNotificationClosedRequest)
@@ -325,9 +325,9 @@
 
 
 
-<a name="hyprpanel-v1-HostServiceIdleInhibitorToggleRequest"></a>
+<a name="hyprpanel-v1-HostServiceIdleInhibitorRequest"></a>
 
-### HostServiceIdleInhibitorToggleRequest
+### HostServiceIdleInhibitorRequest
 
 
 
@@ -340,9 +340,9 @@
 
 
 
-<a name="hyprpanel-v1-HostServiceIdleInhibitorToggleResponse"></a>
+<a name="hyprpanel-v1-HostServiceIdleInhibitorResponse"></a>
 
-### HostServiceIdleInhibitorToggleResponse
+### HostServiceIdleInhibitorResponse
 
 
 
@@ -751,7 +751,8 @@
 | AudioSourceMuteToggle | [HostServiceAudioSourceMuteToggleRequest](#hyprpanel-v1-HostServiceAudioSourceMuteToggleRequest) | [HostServiceAudioSourceMuteToggleResponse](#hyprpanel-v1-HostServiceAudioSourceMuteToggleResponse) |  |
 | BrightnessAdjust | [HostServiceBrightnessAdjustRequest](#hyprpanel-v1-HostServiceBrightnessAdjustRequest) | [HostServiceBrightnessAdjustResponse](#hyprpanel-v1-HostServiceBrightnessAdjustResponse) |  |
 | CaptureFrame | [HostServiceCaptureFrameRequest](#hyprpanel-v1-HostServiceCaptureFrameRequest) | [HostServiceCaptureFrameResponse](#hyprpanel-v1-HostServiceCaptureFrameResponse) |  |
-| IdleInhibitorToggle | [HostServiceIdleInhibitorToggleRequest](#hyprpanel-v1-HostServiceIdleInhibitorToggleRequest) | [HostServiceIdleInhibitorToggleResponse](#hyprpanel-v1-HostServiceIdleInhibitorToggleResponse) |  |
+| IdleInhibitorInhibit | [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest) | [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse) |  |
+| IdleInhibitorUninhibit | [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest) | [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse) |  |
 
 
 <a name="hyprpanel-v1-PanelService"></a>
