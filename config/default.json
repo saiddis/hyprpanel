@@ -143,8 +143,8 @@
 				{
 					"idle_inhibitor": {
 						"icon_size": 24,
-						"icon_symbolic": true
-
+						"icon_symbolic": true,
+						"default_target": 1
 					}
 				},
 				{

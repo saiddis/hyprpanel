@@ -117,8 +117,16 @@ message SystrayModule {
 }
 
 message IdleInhibitor {
+  enum DefaultTarget {
+    DEFAULT_TARGET_UNSPECIFIED = 0;
+    DEFAULT_TARGET_LOCK = 1;
+    DEFAULT_TARGET_SUSPEND = 2;
+    DEFAULT_TARGET_SHUTDOWN = 3;
+  }
+
   uint32 icon_size = 1; // size in pixels for panel icon.
   bool icon_symbolic = 2; // display symbolic or coloured icon in panel.
+  DefaultTarget default_target = 3; // default inhibit target for left click action.
 }
 
 message Module {
