@@ -51,6 +51,10 @@ const (
 	fdoUPowerDevicePropertyEnergy      = `Energy`
 	fdoUPowerDevicePropertyEnergyEmpty = `EnergyEmpty`
 	fdoUPowerDevicePropertyEnergyFull  = `EnergyFull`
+
+	fdoIdleInhibitorPropertyShutdown = `shutdown`
+	fdoIdleInhibitorPropertySleep    = `sleep`
+	fdoIdleInhibitorPropertyIdle     = `idle`
 )
 
 func systemdUnitToObjectPath(unitName string) (dbus.ObjectPath, error) {
