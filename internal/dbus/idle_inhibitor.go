@@ -28,7 +28,7 @@ type idleInhibitor struct {
 
 func (i *idleInhibitor) init() error {
 	go i.watch()
-	i.readyCh <- struct{}{}
+	close(i.readyCh)
 	return nil
 }
 
@@ -86,7 +86,6 @@ func (i *idleInhibitor) watch() {
 	for {
 		select {
 		case <-i.readyCh:
-			close(i.readyCh)
 			i.readyCh = nil
 			continue
 		case <-i.quitCh:
@@ -225,5 +224,7 @@ func (i *idleInhibitor) close() error {
 		}
 	}
 
-	return nil
+	i.conn.RemoveSignal(i.signals)
+
+	return i.conn.Close()
 }
