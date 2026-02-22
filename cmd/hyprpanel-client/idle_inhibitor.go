@@ -34,25 +34,16 @@ type idleInhibitor struct {
 	iconContainer *gtk.CenterBox
 	container     *gtk.Box
 	menuRefs      *refTracker
-	wrapper       *gtk.Overlay
 	actionGroup   *gio.SimpleActionGroup
 	menu          *gtk.PopoverMenu
 }
 
 func (i *idleInhibitor) build(container *gtk.Box) error {
-	i.wrapper = gtk.NewOverlay()
-	i.AddRef(i.wrapper.Unref)
-	i.wrapper.SetHalign(gtk.AlignCenterValue)
-	i.wrapper.SetValign(gtk.AlignCenterValue)
-	i.wrapper.SetCanFocus(false)
-	i.wrapper.SetFocusOnClick(false)
 
 	i.container = gtk.NewBox(i.orientation, 0)
 	i.AddRef(i.container.Unref)
 	i.container.SetName(style.IdleInhibitorID)
 	i.container.AddCssClass(style.ModuleClass)
-
-	container.Append(&i.wrapper.Widget)
 
 	icon, err := createIcon(
 		`inhibit`,
@@ -69,7 +60,6 @@ func (i *idleInhibitor) build(container *gtk.Box) error {
 	i.iconContainer.SetCenterWidget(&i.icon.Widget)
 	i.container.SetTooltipMarkup(`Idle inhibitor is inactive`)
 	i.container.Append(&i.iconContainer.Widget)
-	i.wrapper.SetChild(&i.container.Widget)
 
 	if err := i.buildMenu(); err != nil {
 		return err
@@ -106,11 +96,14 @@ func (i *idleInhibitor) build(container *gtk.Box) error {
 	i.AddRef(func() {
 		unrefCallback(&clickCb)
 	})
+
 	clickController := gtk.NewGestureClick()
 	i.AddRef(clickController.Unref)
 	clickController.SetButton(0)
 	clickController.ConnectReleased(&clickCb)
 	i.container.AddController(&clickController.EventController)
+
+	container.Append(&i.container.Widget)
 
 	go i.watch()
 
@@ -135,37 +128,37 @@ func (i *idleInhibitor) watch() {
 		case <-i.quitCh:
 			return
 		default:
-			select {
-			case <-i.quitCh:
-				return
-			case evt := <-i.eventCh:
-				switch evt.Kind {
-				case eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_INHIBIT, eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT:
-					data := &eventv1.IdleInhibitorValue{}
-					if !evt.Data.MessageIs(data) {
-						log.Warn(`Invalid event`, `module`, style.AudioID, `evt`, evt)
-						continue
-					}
-					if err := evt.Data.UnmarshalTo(data); err != nil {
-						log.Warn(`Invalid event`, `module`, style.AudioID, `err`, err, `evt`, evt)
-						continue
-					}
-					var cb glib.SourceFunc
-					cb = func(uintptr) bool {
-						defer unrefCallback(&cb)
-						if evt.Kind == eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_INHIBIT {
-							if err := i.inhibit(data.Target); err != nil {
-								log.Warn(`Failed to toggle idle inhibitor`, `err`, err)
-							}
-						} else {
-							if err := i.uninhibit(data.Target); err != nil {
-								log.Warn(`Failed to toggle idle inhibitor`, `err`, err)
-							}
-						}
-						return false
-					}
-					glib.IdleAdd(&cb, 0)
+		}
+		select {
+		case <-i.quitCh:
+			return
+		case evt := <-i.eventCh:
+			switch evt.Kind {
+			case eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_INHIBIT, eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT:
+				data := &eventv1.IdleInhibitorValue{}
+				if !evt.Data.MessageIs(data) {
+					log.Warn(`Invalid event`, `module`, style.AudioID, `evt`, evt)
+					continue
 				}
+				if err := evt.Data.UnmarshalTo(data); err != nil {
+					log.Warn(`Invalid event`, `module`, style.AudioID, `err`, err, `evt`, evt)
+					continue
+				}
+				var cb glib.SourceFunc
+				cb = func(uintptr) bool {
+					defer unrefCallback(&cb)
+					if evt.Kind == eventv1.EventKind_EVENT_KIND_IDLE_INHIBITOR_INHIBIT {
+						if err := i.inhibit(data.Target); err != nil {
+							log.Warn(`Failed to toggle idle inhibitor`, `err`, err)
+						}
+					} else {
+						if err := i.uninhibit(data.Target); err != nil {
+							log.Warn(`Failed to toggle idle inhibitor`, `err`, err)
+						}
+					}
+					return false
+				}
+				glib.IdleAdd(&cb, 0)
 			}
 		}
 	}
