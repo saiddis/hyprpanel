@@ -9,6 +9,7 @@
     - [Config.DBUS](#hyprpanel-config-v1-Config-DBUS)
     - [Config.DBUS.Brightness](#hyprpanel-config-v1-Config-DBUS-Brightness)
     - [Config.DBUS.IdleInhibitor](#hyprpanel-config-v1-Config-DBUS-IdleInhibitor)
+    - [Config.DBUS.MediaPlayer](#hyprpanel-config-v1-Config-DBUS-MediaPlayer)
     - [Config.DBUS.Notifications](#hyprpanel-config-v1-Config-DBUS-Notifications)
     - [Config.DBUS.Power](#hyprpanel-config-v1-Config-DBUS-Power)
     - [Config.DBUS.Shortcuts](#hyprpanel-config-v1-Config-DBUS-Shortcuts)
@@ -86,6 +87,7 @@
 | brightness | [Config.DBUS.Brightness](#hyprpanel-config-v1-Config-DBUS-Brightness) |  | brightness configuration. |
 | power | [Config.DBUS.Power](#hyprpanel-config-v1-Config-DBUS-Power) |  | power configuration. |
 | idle_inhibitor | [Config.DBUS.IdleInhibitor](#hyprpanel-config-v1-Config-DBUS-IdleInhibitor) |  | idle inhibitor configuration. |
+| media_player | [Config.DBUS.MediaPlayer](#hyprpanel-config-v1-Config-DBUS-MediaPlayer) |  | media player configuration. |
 
 
 
@@ -120,6 +122,21 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | enabled | [bool](#bool) |  | toggles the idle inhibitor functionality, required for &#34;idle_inhibitor&#34; module. |
+
+
+
+
+
+
+<a name="hyprpanel-config-v1-Config-DBUS-MediaPlayer"></a>
+
+### Config.DBUS.MediaPlayer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  | toggles the MediaPlayer functionality, required for &#34;media_player&#34; module. |
 
 
 

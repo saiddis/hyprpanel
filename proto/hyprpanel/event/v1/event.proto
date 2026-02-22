@@ -4,6 +4,7 @@ package hyprpanel.event.v1;
 
 import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "hyprpanel/module/v1/module.proto";
 
 enum Direction {
@@ -39,6 +40,13 @@ enum InhibitTarget {
   INHIBIT_TARGET_IDLE = 1;
   INHIBIT_TARGET_SLEEP = 2;
   INHIBIT_TARGET_SHUTDOWN = 3;
+}
+
+enum MediaPlayerState {
+  MEDIA_PLAYER_STATE_UNSPECIFIED = 0;
+  MEDIA_PLAYER_STATE_PLAYING = 1;
+  MEDIA_PLAYER_STATE_PAUSED = 2;
+  MEDIA_PLAYER_STATE_STOPPED = 3;
 }
 
 enum EventKind {
@@ -103,6 +111,24 @@ enum EventKind {
   EVENT_KIND_EXEC = 59;
   EVENT_KIND_IDLE_INHIBITOR_INHIBIT = 60;
   EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT = 61;
+  EVENT_KIND_MEDIA_PLAYER_CHANGE = 62;
+}
+
+message MediaPlayerValueChange {
+  MediaPlayerState state = 1;
+  bool can_go_next = 2;
+  bool can_go_previous = 3;
+  string track_id = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  optional int64 position_us = 6;
+  optional int64 length_us = 7;
+  optional string title = 8;
+  optional string artist = 9;
+  optional string album = 10;
+  optional string desktop_entry = 11;
+  optional string identity = 12;
+  optional string art_url = 13;
+  optional string url = 14;
 }
 
 message HyprWorkspaceV2Value {

@@ -51,6 +51,14 @@ type Host interface {
 	CaptureFrame(address uint64, width, height int32) (*hyprpanelv1.ImageNRGBA, error)
 	IdleInhibitorInhibit(target eventv1.InhibitTarget) error
 	IdleInhibitorUninhibit(target eventv1.InhibitTarget) error
+	MediaPlayerPlayPause() error
+	MediaPlayerPlay() error
+	MediaPlayerPause() error
+	MediaPlayerStop() error
+	MediaPlayerNext() error
+	MediaPlayerPrevious() error
+	MediaPlayerSeek(offset int64) error
+	MediaPlayerSetPosition(trackId string, pos int64) error
 }
 
 // Panel interface.

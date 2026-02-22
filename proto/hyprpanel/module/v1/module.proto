@@ -129,6 +129,11 @@ message IdleInhibitor {
   DefaultTarget default_target = 3; // default inhibit target for left click action.
 }
 
+message MediaPlayer {
+  uint32 icon_size = 1;
+  bool icon_symbolic = 2;
+}
+
 message Module {
   oneof kind {
     Pager pager = 1;
@@ -142,5 +147,6 @@ message Module {
     Session session = 9;
     Spacer spacer = 10;
     IdleInhibitor idle_inhibitor = 11;
+    MediaPlayer media_player = 12;
   }
 }

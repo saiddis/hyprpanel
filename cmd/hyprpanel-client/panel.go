@@ -218,6 +218,10 @@ func (p *panel) build() error {
 	for _, modCfg := range p.panelCfg.Modules {
 		modCfg := modCfg
 		switch modCfg.Kind.(type) {
+		case *modulev1.Module_MediaPlayer:
+			cfg := modCfg.GetMediaPlayer()
+			mod := newMediaPlayer(cfg, p.api)
+			p.modules = append(p.modules, mod)
 		case *modulev1.Module_IdleInhibitor:
 			cfg := modCfg.GetIdleInhibitor()
 			mod := newIdleInhibitor(cfg, p.api)

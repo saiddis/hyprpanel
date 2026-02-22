@@ -126,6 +126,69 @@ func (c *HostGRPCClient) IdleInhibitorUninhibit(target eventv1.InhibitTarget) er
 	return nil
 }
 
+func (c *HostGRPCClient) MediaPlayerPlayPause() error {
+	if _, err := c.client.MediaPlayerPlayPause(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerPlay() error {
+	if _, err := c.client.MediaPlayerPlay(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerPause() error {
+	if _, err := c.client.MediaPlayerPause(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerStop() error {
+	if _, err := c.client.MediaPlayerStop(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerNext() error {
+	if _, err := c.client.MediaPlayerNext(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerPrevious() error {
+	if _, err := c.client.MediaPlayerPrevious(context.Background(), &hyprpanelv1.HostServiceMediaPlayerRequest{}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerSeek(offset int64) error {
+	if _, err := c.client.MediaPlayerSeek(context.Background(),
+		&hyprpanelv1.HostServiceMediaPlayerSeekRequest{
+			OffsetUs: offset,
+		}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *HostGRPCClient) MediaPlayerSetPosition(trackId string, pos int64) error {
+	if _, err := c.client.MediaPlayerSetPosition(context.Background(),
+		&hyprpanelv1.HostServiceMediaPlayerSetPostionRequest{
+			TrackId:    trackId,
+			PositionUs: pos,
+		}); err != nil {
+		return err
+	}
+	return nil
+}
+
 // Exec implmenetation.
 func (c *HostGRPCClient) Exec(action *hyprpanelv1.AppInfo_Action) error {
 	_, err := c.client.Exec(context.Background(), &hyprpanelv1.HostServiceExecRequest{
@@ -301,6 +364,70 @@ func (s *HostGRPCServer) IdleInhibitorUninhibit(ctx context.Context, req *hyprpa
 		return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, err
 	}
 	return &hyprpanelv1.HostServiceIdleInhibitorResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerPlayPause(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerPlayPause()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerPlay(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerPlay()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerPause(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerPause()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerNext(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerNext()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerPrevious(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerPrevious()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerStop(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerStop()
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerSeek(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerSeekRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerSeek(req.OffsetUs)
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
+}
+
+func (s *HostGRPCServer) MediaPlayerSetPosition(ctx context.Context, req *hyprpanelv1.HostServiceMediaPlayerSetPostionRequest) (*hyprpanelv1.HostServiceMediaPlayerResponse, error) {
+	err := s.Impl.MediaPlayerSetPosition(req.TrackId, req.PositionUs)
+	if err != nil {
+		return &hyprpanelv1.HostServiceMediaPlayerResponse{}, err
+	}
+	return &hyprpanelv1.HostServiceMediaPlayerResponse{}, nil
 }
 
 // Exec implementation.

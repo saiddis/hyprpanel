@@ -43,6 +43,8 @@ const (
 	HudOverlayID = `hudOverlay`
 	// IdleID element identifier.
 	IdleInhibitorID = `idleInhibitor`
+	// MediaPlayerID element identifier.
+	MediaPlayerID = `mediaPlayer`
 
 	// ModuleClass class name.
 	ModuleClass = `module`
@@ -86,6 +88,12 @@ const (
 	HudPercentClass = `hudPercent`
 	// HudGaugeClass class name.
 	HudGaugeClass = `hudGauge`
+	// MediaPlayerButtonClass class name.
+	MediaPlayerButtonClass = `mediaPlayerButton`
+	// MediaPlayerTitleClass class name.
+	MediaPlayerTitleClass = `mediaPlayerTitle`
+	// MediaPlayerArtistClass class name.
+	MediaPlayerArtistClass = `mediaPlayerArtist`
 
 	// TooltipImageClass class name.
 	TooltipImageClass = `tooltipImage`

@@ -25,6 +25,7 @@
     - [HyprRenameWorkspaceValue](#hyprpanel-event-v1-HyprRenameWorkspaceValue)
     - [HyprWorkspaceV2Value](#hyprpanel-event-v1-HyprWorkspaceV2Value)
     - [IdleInhibitorValue](#hyprpanel-event-v1-IdleInhibitorValue)
+    - [MediaPlayerValueChange](#hyprpanel-event-v1-MediaPlayerValueChange)
     - [NotificationValue](#hyprpanel-event-v1-NotificationValue)
     - [NotificationValue.Action](#hyprpanel-event-v1-NotificationValue-Action)
     - [NotificationValue.Hint](#hyprpanel-event-v1-NotificationValue-Hint)
@@ -45,6 +46,7 @@
     - [Direction](#hyprpanel-event-v1-Direction)
     - [EventKind](#hyprpanel-event-v1-EventKind)
     - [InhibitTarget](#hyprpanel-event-v1-InhibitTarget)
+    - [MediaPlayerState](#hyprpanel-event-v1-MediaPlayerState)
     - [PowerState](#hyprpanel-event-v1-PowerState)
     - [PowerType](#hyprpanel-event-v1-PowerType)
   
@@ -407,6 +409,34 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | target | [InhibitTarget](#hyprpanel-event-v1-InhibitTarget) |  |  |
+
+
+
+
+
+
+<a name="hyprpanel-event-v1-MediaPlayerValueChange"></a>
+
+### MediaPlayerValueChange
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| state | [MediaPlayerState](#hyprpanel-event-v1-MediaPlayerState) |  |  |
+| can_go_next | [bool](#bool) |  |  |
+| can_go_previous | [bool](#bool) |  |  |
+| track_id | [string](#string) |  |  |
+| updated_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| position_us | [int64](#int64) | optional |  |
+| length_us | [int64](#int64) | optional |  |
+| title | [string](#string) | optional |  |
+| artist | [string](#string) | optional |  |
+| album | [string](#string) | optional |  |
+| desktop_entry | [string](#string) | optional |  |
+| identity | [string](#string) | optional |  |
+| art_url | [string](#string) | optional |  |
+| url | [string](#string) | optional |  |
 
 
 
@@ -796,6 +826,7 @@
 | EVENT_KIND_EXEC | 59 |  |
 | EVENT_KIND_IDLE_INHIBITOR_INHIBIT | 60 |  |
 | EVENT_KIND_IDLE_INHIBITOR_UNINHIBIT | 61 |  |
+| EVENT_KIND_MEDIA_PLAYER_CHANGE | 62 |  |
 
 
 
@@ -810,6 +841,20 @@
 | INHIBIT_TARGET_IDLE | 1 |  |
 | INHIBIT_TARGET_SLEEP | 2 |  |
 | INHIBIT_TARGET_SHUTDOWN | 3 |  |
+
+
+
+<a name="hyprpanel-event-v1-MediaPlayerState"></a>
+
+### MediaPlayerState
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| MEDIA_PLAYER_STATE_UNSPECIFIED | 0 |  |
+| MEDIA_PLAYER_STATE_PLAYING | 1 |  |
+| MEDIA_PLAYER_STATE_PAUSED | 2 |  |
+| MEDIA_PLAYER_STATE_STOPPED | 3 |  |
 
 
 

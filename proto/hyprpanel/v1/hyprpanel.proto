@@ -191,6 +191,19 @@ message HostServiceCaptureFrameResponse {
   ImageNRGBA image = 1;
 }
 
+message HostServiceMediaPlayerRequest {}
+
+message HostServiceMediaPlayerSeekRequest {
+  int64 offset_us = 1;
+}
+
+message HostServiceMediaPlayerSetPostionRequest {
+  string track_id = 1;
+  int64 position_us = 2;
+}
+
+message HostServiceMediaPlayerResponse {}
+
 service HostService {
   rpc Exec(HostServiceExecRequest) returns (HostServiceExecResponse);
   rpc FindApplication(HostServiceFindApplicationRequest) returns (HostServiceFindApplicationResponse);
@@ -210,4 +223,12 @@ service HostService {
   rpc CaptureFrame(HostServiceCaptureFrameRequest) returns (HostServiceCaptureFrameResponse);
   rpc IdleInhibitorInhibit(HostServiceIdleInhibitorRequest) returns (HostServiceIdleInhibitorResponse);
   rpc IdleInhibitorUninhibit(HostServiceIdleInhibitorRequest) returns (HostServiceIdleInhibitorResponse);
+  rpc MediaPlayerPlayPause(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerPlay(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerPause(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerStop(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerNext(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerPrevious(HostServiceMediaPlayerRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerSeek(HostServiceMediaPlayerSeekRequest) returns (HostServiceMediaPlayerResponse);
+  rpc MediaPlayerSetPosition(HostServiceMediaPlayerSetPostionRequest) returns (HostServiceMediaPlayerResponse);
 }

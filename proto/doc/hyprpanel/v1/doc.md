@@ -24,6 +24,10 @@
     - [HostServiceFindApplicationResponse](#hyprpanel-v1-HostServiceFindApplicationResponse)
     - [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest)
     - [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse)
+    - [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest)
+    - [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse)
+    - [HostServiceMediaPlayerSeekRequest](#hyprpanel-v1-HostServiceMediaPlayerSeekRequest)
+    - [HostServiceMediaPlayerSetPostionRequest](#hyprpanel-v1-HostServiceMediaPlayerSetPostionRequest)
     - [HostServiceNotificationActionRequest](#hyprpanel-v1-HostServiceNotificationActionRequest)
     - [HostServiceNotificationActionResponse](#hyprpanel-v1-HostServiceNotificationActionResponse)
     - [HostServiceNotificationClosedRequest](#hyprpanel-v1-HostServiceNotificationClosedRequest)
@@ -344,6 +348,57 @@
 
 ### HostServiceIdleInhibitorResponse
 
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceMediaPlayerRequest"></a>
+
+### HostServiceMediaPlayerRequest
+
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceMediaPlayerResponse"></a>
+
+### HostServiceMediaPlayerResponse
+
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceMediaPlayerSeekRequest"></a>
+
+### HostServiceMediaPlayerSeekRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| offset_us | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="hyprpanel-v1-HostServiceMediaPlayerSetPostionRequest"></a>
+
+### HostServiceMediaPlayerSetPostionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| track_id | [string](#string) |  |  |
+| position_us | [int64](#int64) |  |  |
 
 
 
@@ -753,6 +808,14 @@
 | CaptureFrame | [HostServiceCaptureFrameRequest](#hyprpanel-v1-HostServiceCaptureFrameRequest) | [HostServiceCaptureFrameResponse](#hyprpanel-v1-HostServiceCaptureFrameResponse) |  |
 | IdleInhibitorInhibit | [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest) | [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse) |  |
 | IdleInhibitorUninhibit | [HostServiceIdleInhibitorRequest](#hyprpanel-v1-HostServiceIdleInhibitorRequest) | [HostServiceIdleInhibitorResponse](#hyprpanel-v1-HostServiceIdleInhibitorResponse) |  |
+| MediaPlayerPlayPause | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerPlay | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerPause | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerStop | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerNext | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerPrevious | [HostServiceMediaPlayerRequest](#hyprpanel-v1-HostServiceMediaPlayerRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerSeek | [HostServiceMediaPlayerSeekRequest](#hyprpanel-v1-HostServiceMediaPlayerSeekRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
+| MediaPlayerSetPosition | [HostServiceMediaPlayerSetPostionRequest](#hyprpanel-v1-HostServiceMediaPlayerSetPostionRequest) | [HostServiceMediaPlayerResponse](#hyprpanel-v1-HostServiceMediaPlayerResponse) |  |
 
 
 <a name="hyprpanel-v1-PanelService"></a>

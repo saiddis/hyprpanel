@@ -10,7 +10,8 @@ import (
 const (
 	fdoName                   = `org.freedesktop.DBus`
 	fdoPath                   = dbus.ObjectPath(`/org/freedesktop/DBus`)
-	fdoSignalNameOwnerChanged = fdoName + `.NameOwnerChanged`
+	fdoMemberNameOwnerChanged = `NameOwnerChanged`
+	fdoSignalNameOwnerChanged = fdoName + `.` + fdoMemberNameOwnerChanged
 	fdoIntrospectableName     = fdoName + `.Introspectable`
 
 	fdoPropertiesName                    = fdoName + `.Properties`
@@ -35,6 +36,26 @@ const (
 	fdoUPowerName                   = `org.freedesktop.UPower`
 	fdoUPowerPath                   = `/org/freedesktop/UPower`
 	fdoUPowerMethodGetDisplayDevice = fdoUPowerName + `.GetDisplayDevice`
+
+	fdoMediaPlayerPath = `/org/mpris/MediaPlayer2`
+	fdoMediaPlayerName = `org.mpris.MediaPlayer2`
+	fdoPlayerName      = fdoMediaPlayerName + ".Player"
+
+	fdoPlayerMethodPlayPause   = fdoPlayerName + `.PlayPause`
+	fdoPlayerMethodPlay        = fdoPlayerName + `.Play`
+	fdoPlayerMethodPause       = fdoPlayerName + `.Pause`
+	fdoPlayerMethodNext        = fdoPlayerName + `.Next`
+	fdoPlayerMethodPrevious    = fdoPlayerName + `.Previous`
+	fdoPlayerMethodStop        = fdoPlayerName + `.Stop`
+	fdoPlayerMethodSeek        = fdoPlayerName + `.Seek`
+	fdoPlayerMethodSetPosition = fdoPlayerName + `.SetPosition`
+
+	fdoPlayerPropertyPlaybackStatus = `PlaybackStatus`
+	fdoPlayerPropertyCanGoNext      = `CanGoNext`
+	fdoPlayerPropertyCanGoPrevious  = `CanGoPrevious`
+	fdoPlayerPropertyIdentity       = `Identity`
+	fdoPlayerPropertyDesktopEntry   = `DesktopEntry`
+	fdoPlayerPropertyMetadata       = `Metadata`
 
 	fdoUPowerDeviceName                = fdoUPowerName + `.Device`
 	fdoUPowerDevicePropertyVendor      = `Vendor`

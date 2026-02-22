@@ -49,6 +49,17 @@ type IdleInhibitor interface {
 	Uninhibit(target eventv1.InhibitTarget) error
 }
 
+type MediaPlayer interface {
+	PlayPause() error
+	Play() error
+	Pause() error
+	Stop() error
+	Next() error
+	Previous() error
+	Seek(offset int64) error
+	SetPostion(trackId string, pos int64) error
+}
+
 // Client for DBUS.
 type Client struct {
 	cfg             *configv1.Config_DBUS
@@ -63,6 +74,7 @@ type Client struct {
 	brightness      *brightness
 	power           *power
 	idleInhibitor   *idleInhibitor
+	mediaPlayer     *mediaPlayer
 }
 
 // Systray API.
@@ -85,6 +97,10 @@ func (c *Client) IdleInhibitor() IdleInhibitor {
 	return c.idleInhibitor
 }
 
+func (c *Client) MediaPlayer() MediaPlayer {
+	return c.mediaPlayer
+}
+
 // Events channel will deliver events from DBUS.
 func (c *Client) Events() <-chan *eventv1.Event {
 	return c.eventCh
@@ -101,6 +117,11 @@ func (c *Client) Close() error {
 	if c.idleInhibitor != nil {
 		if err := c.idleInhibitor.close(); err != nil {
 			c.log.Warn(`Failed closing IdleInhibitor session`, `err`, err)
+		}
+	}
+	if c.mediaPlayer != nil {
+		if err := c.mediaPlayer.close(); err != nil {
+			c.log.Warn(`Failed closing MediaPlayer session`, `err`, err)
 		}
 	}
 	if c.notifications != nil {
@@ -174,6 +195,12 @@ func New(cfg *configv1.Config_DBUS, logger hclog.Logger) (*Client, <-chan *event
 
 	if cfg.IdleInhibitor.Enabled {
 		if c.idleInhibitor, err = newIdleInhibitor(systemConn, logger, c.eventCh, cfg.IdleInhibitor); err != nil {
+			return nil, nil, err
+		}
+	}
+
+	if cfg.MediaPlayer.Enabled {
+		if c.mediaPlayer, err = newMediaPlayer(sessionConn, logger, c.eventCh, cfg.MediaPlayer); err != nil {
 			return nil, nil, err
 		}
 	}

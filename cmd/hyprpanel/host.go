@@ -189,8 +189,71 @@ func (h *host) IdleInhibitorUninhibit(target eventv1.InhibitTarget) error {
 		return errDisabled
 	}
 
-	h.dbus.IdleInhibitor().Uninhibit(target)
-	return nil
+	return h.dbus.IdleInhibitor().Uninhibit(target)
+}
+
+func (h *host) MediaPlayerPlayPause() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().PlayPause()
+}
+
+func (h *host) MediaPlayerPause() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Pause()
+}
+
+func (h *host) MediaPlayerPlay() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Play()
+}
+
+func (h *host) MediaPlayerStop() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Stop()
+}
+
+func (h *host) MediaPlayerNext() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Next()
+}
+
+func (h *host) MediaPlayerPrevious() error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Previous()
+}
+
+func (h *host) MediaPlayerSeek(offset int64) error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().Seek(offset)
+}
+
+func (h *host) MediaPlayerSetPosition(trackId string, pos int64) error {
+	if h.cfg.Dbus == nil || !h.cfg.Dbus.Enabled || h.cfg.Dbus.MediaPlayer == nil || !h.cfg.Dbus.MediaPlayer.Enabled {
+		return errDisabled
+	}
+
+	return h.dbus.MediaPlayer().SetPostion(trackId, pos)
 }
 
 func (h *host) CaptureFrame(address uint64, width, height int32) (*hyprpanelv1.ImageNRGBA, error) {

@@ -201,6 +201,14 @@ const (
 	HostService_CaptureFrame_FullMethodName               = "/hyprpanel.v1.HostService/CaptureFrame"
 	HostService_IdleInhibitorInhibit_FullMethodName       = "/hyprpanel.v1.HostService/IdleInhibitorInhibit"
 	HostService_IdleInhibitorUninhibit_FullMethodName     = "/hyprpanel.v1.HostService/IdleInhibitorUninhibit"
+	HostService_MediaPlayerPlayPause_FullMethodName       = "/hyprpanel.v1.HostService/MediaPlayerPlayPause"
+	HostService_MediaPlayerPlay_FullMethodName            = "/hyprpanel.v1.HostService/MediaPlayerPlay"
+	HostService_MediaPlayerPause_FullMethodName           = "/hyprpanel.v1.HostService/MediaPlayerPause"
+	HostService_MediaPlayerStop_FullMethodName            = "/hyprpanel.v1.HostService/MediaPlayerStop"
+	HostService_MediaPlayerNext_FullMethodName            = "/hyprpanel.v1.HostService/MediaPlayerNext"
+	HostService_MediaPlayerPrevious_FullMethodName        = "/hyprpanel.v1.HostService/MediaPlayerPrevious"
+	HostService_MediaPlayerSeek_FullMethodName            = "/hyprpanel.v1.HostService/MediaPlayerSeek"
+	HostService_MediaPlayerSetPosition_FullMethodName     = "/hyprpanel.v1.HostService/MediaPlayerSetPosition"
 )
 
 // HostServiceClient is the client API for HostService service.
@@ -225,6 +233,14 @@ type HostServiceClient interface {
 	CaptureFrame(ctx context.Context, in *HostServiceCaptureFrameRequest, opts ...grpc.CallOption) (*HostServiceCaptureFrameResponse, error)
 	IdleInhibitorInhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error)
 	IdleInhibitorUninhibit(ctx context.Context, in *HostServiceIdleInhibitorRequest, opts ...grpc.CallOption) (*HostServiceIdleInhibitorResponse, error)
+	MediaPlayerPlayPause(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPlay(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPause(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerStop(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerNext(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPrevious(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerSeek(ctx context.Context, in *HostServiceMediaPlayerSeekRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerSetPosition(ctx context.Context, in *HostServiceMediaPlayerSetPostionRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error)
 }
 
 type hostServiceClient struct {
@@ -397,6 +413,78 @@ func (c *hostServiceClient) IdleInhibitorUninhibit(ctx context.Context, in *Host
 	return out, nil
 }
 
+func (c *hostServiceClient) MediaPlayerPlayPause(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerPlayPause_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerPlay(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerPlay_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerPause(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerPause_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerStop(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerStop_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerNext(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerNext_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerPrevious(ctx context.Context, in *HostServiceMediaPlayerRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerPrevious_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerSeek(ctx context.Context, in *HostServiceMediaPlayerSeekRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerSeek_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hostServiceClient) MediaPlayerSetPosition(ctx context.Context, in *HostServiceMediaPlayerSetPostionRequest, opts ...grpc.CallOption) (*HostServiceMediaPlayerResponse, error) {
+	out := new(HostServiceMediaPlayerResponse)
+	err := c.cc.Invoke(ctx, HostService_MediaPlayerSetPosition_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HostServiceServer is the server API for HostService service.
 // All implementations must embed UnimplementedHostServiceServer
 // for forward compatibility
@@ -419,6 +507,14 @@ type HostServiceServer interface {
 	CaptureFrame(context.Context, *HostServiceCaptureFrameRequest) (*HostServiceCaptureFrameResponse, error)
 	IdleInhibitorInhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error)
 	IdleInhibitorUninhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error)
+	MediaPlayerPlayPause(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPlay(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPause(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerStop(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerNext(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerPrevious(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerSeek(context.Context, *HostServiceMediaPlayerSeekRequest) (*HostServiceMediaPlayerResponse, error)
+	MediaPlayerSetPosition(context.Context, *HostServiceMediaPlayerSetPostionRequest) (*HostServiceMediaPlayerResponse, error)
 	mustEmbedUnimplementedHostServiceServer()
 }
 
@@ -479,6 +575,30 @@ func (UnimplementedHostServiceServer) IdleInhibitorInhibit(context.Context, *Hos
 }
 func (UnimplementedHostServiceServer) IdleInhibitorUninhibit(context.Context, *HostServiceIdleInhibitorRequest) (*HostServiceIdleInhibitorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IdleInhibitorUninhibit not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerPlayPause(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerPlayPause not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerPlay(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerPlay not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerPause(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerPause not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerStop(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerStop not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerNext(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerNext not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerPrevious(context.Context, *HostServiceMediaPlayerRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerPrevious not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerSeek(context.Context, *HostServiceMediaPlayerSeekRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerSeek not implemented")
+}
+func (UnimplementedHostServiceServer) MediaPlayerSetPosition(context.Context, *HostServiceMediaPlayerSetPostionRequest) (*HostServiceMediaPlayerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MediaPlayerSetPosition not implemented")
 }
 func (UnimplementedHostServiceServer) mustEmbedUnimplementedHostServiceServer() {}
 
@@ -817,6 +937,150 @@ func _HostService_IdleInhibitorUninhibit_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HostService_MediaPlayerPlayPause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerPlayPause(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerPlayPause_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerPlayPause(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerPlay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerPlay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerPlay_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerPlay(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerPause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerPause(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerPause_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerPause(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerStop_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerStop(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerStop_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerStop(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerNext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerNext(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerNext_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerNext(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerPrevious_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerPrevious(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerPrevious_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerPrevious(ctx, req.(*HostServiceMediaPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerSeek_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerSeekRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerSeek(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerSeek_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerSeek(ctx, req.(*HostServiceMediaPlayerSeekRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HostService_MediaPlayerSetPosition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HostServiceMediaPlayerSetPostionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HostServiceServer).MediaPlayerSetPosition(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HostService_MediaPlayerSetPosition_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HostServiceServer).MediaPlayerSetPosition(ctx, req.(*HostServiceMediaPlayerSetPostionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HostService_ServiceDesc is the grpc.ServiceDesc for HostService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -895,6 +1159,38 @@ var HostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IdleInhibitorUninhibit",
 			Handler:    _HostService_IdleInhibitorUninhibit_Handler,
+		},
+		{
+			MethodName: "MediaPlayerPlayPause",
+			Handler:    _HostService_MediaPlayerPlayPause_Handler,
+		},
+		{
+			MethodName: "MediaPlayerPlay",
+			Handler:    _HostService_MediaPlayerPlay_Handler,
+		},
+		{
+			MethodName: "MediaPlayerPause",
+			Handler:    _HostService_MediaPlayerPause_Handler,
+		},
+		{
+			MethodName: "MediaPlayerStop",
+			Handler:    _HostService_MediaPlayerStop_Handler,
+		},
+		{
+			MethodName: "MediaPlayerNext",
+			Handler:    _HostService_MediaPlayerNext_Handler,
+		},
+		{
+			MethodName: "MediaPlayerPrevious",
+			Handler:    _HostService_MediaPlayerPrevious_Handler,
+		},
+		{
+			MethodName: "MediaPlayerSeek",
+			Handler:    _HostService_MediaPlayerSeek_Handler,
+		},
+		{
+			MethodName: "MediaPlayerSetPosition",
+			Handler:    _HostService_MediaPlayerSetPosition_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

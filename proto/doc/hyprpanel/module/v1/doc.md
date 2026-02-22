@@ -8,6 +8,7 @@
     - [Clock](#hyprpanel-module-v1-Clock)
     - [Hud](#hyprpanel-module-v1-Hud)
     - [IdleInhibitor](#hyprpanel-module-v1-IdleInhibitor)
+    - [MediaPlayer](#hyprpanel-module-v1-MediaPlayer)
     - [Module](#hyprpanel-module-v1-Module)
     - [Notifications](#hyprpanel-module-v1-Notifications)
     - [Pager](#hyprpanel-module-v1-Pager)
@@ -105,6 +106,22 @@
 
 
 
+<a name="hyprpanel-module-v1-MediaPlayer"></a>
+
+### MediaPlayer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| icon_size | [uint32](#uint32) |  |  |
+| icon_symbolic | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="hyprpanel-module-v1-Module"></a>
 
 ### Module
@@ -124,6 +141,7 @@
 | session | [Session](#hyprpanel-module-v1-Session) |  |  |
 | spacer | [Spacer](#hyprpanel-module-v1-Spacer) |  |  |
 | idle_inhibitor | [IdleInhibitor](#hyprpanel-module-v1-IdleInhibitor) |  |  |
+| media_player | [MediaPlayer](#hyprpanel-module-v1-MediaPlayer) |  |  |
 
 
 
